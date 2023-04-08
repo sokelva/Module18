@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using YoutubeExplode;
 using YoutubeExplode.Converter;
+using YoutubeExplode.Videos.Streams;
 
 namespace YoutubeExplodeConverter
 {
@@ -26,16 +28,16 @@ namespace YoutubeExplodeConverter
             Console.WriteLine($"Название: {info.Title}");
             Console.WriteLine($"Продолжительность: {info.Duration}");
             Console.WriteLine($"Автор: {info.Author}");
-            Console.ReadKey();
         }
 
         public void DownLoadVideo(string url, string outputFilePath)
         {
             YoutubeClient client = new YoutubeClient();
-            client.Videos.DownloadAsync(url, outputFilePath);
-
+            client.Videos.DownloadAsync(url, outputFilePath, builder => builder.SetPreset(ConversionPreset.UltraFast));
+            //Console.WriteLine("Запущено скачивание файла в течение 2-х минут!!");
+            Console.ReadKey();
+            Task.WaitAll();
             Console.ReadKey();
         }
-
     }
 }
