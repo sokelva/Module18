@@ -21,15 +21,15 @@ namespace YoutubeExplodeConverter
         }
 
         // Вывести в консоль
-        public void ConsoleViewer()
+        public void ConsoleViewer(string url)
         {
-            _command.ConsoleViewer();
+            _command.ConsoleViewer(url);
         }
 
         // Выполнить скачивание
-        public void DownLoadVideo()
+        public void DownLoadVideo(string url, string outputFilePath)
         {
-            _command.DownLoadVideo();
+            _command.DownLoadVideo(url, outputFilePath);
         }
     }
 }

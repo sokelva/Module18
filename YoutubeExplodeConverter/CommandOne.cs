@@ -16,7 +16,7 @@ namespace YoutubeExplodeConverter
     {
         
         Receiver receiver;
-        public static string VideoUrl = "https://www.youtube.com/watch?v=1La4QzGeaaQ";
+        
 
         public CommandOne(Receiver receiver)
         {
@@ -24,35 +24,19 @@ namespace YoutubeExplodeConverter
         }
 
         // Выполнить
-        public override void ConsoleViewer()
+        public override void ConsoleViewer(string url)
         {
             Console.WriteLine("Команда отправлена");
             receiver.Operation();
-            GetVideoInfo();
+            receiver.GetVideoInfo(url);
         }
 
         // Скачать
-        public override void DownLoadVideo()
+        public override void DownLoadVideo(string url, string outputFilePath)
         {
-
-        }
-
-        public async Task GetVideoInfo()
-        {
-            using (var httpClient = new HttpClient())
-            {
-                //httpClient.GetStringAsync(VideoUrl).Wait();
-                YoutubeClient client = new YoutubeClient();
-                Console.ReadLine();
-                var info = await client.Videos.GetAsync("https://www.youtube.com/watch?v=1La4QzGeaaQ");
-
-                
-                Console.WriteLine($"Название: {info.Title}");
-                Console.WriteLine($"Продолжительность: {info.Duration}");
-                Console.WriteLine($"Автор: {info.Author}");
-                Console.ReadLine();
-            }
+            Console.WriteLine("Команда отправлена");
+            receiver.Operation();
+            receiver.DownLoadVideo(url, outputFilePath);
         }
     }
-
 }
