@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using YoutubeExplode;
 
 namespace YoutubeExplodeConverter
 {
@@ -11,7 +14,9 @@ namespace YoutubeExplodeConverter
     /// </summary>
     class CommandOne : Command
     {
+        
         Receiver receiver;
+        public static string VideoUrl = "https://www.youtube.com/watch?v=1La4QzGeaaQ";
 
         public CommandOne(Receiver receiver)
         {
@@ -19,15 +24,35 @@ namespace YoutubeExplodeConverter
         }
 
         // Выполнить
-        public override void Run()
+        public override void ConsoleViewer()
         {
             Console.WriteLine("Команда отправлена");
             receiver.Operation();
+            GetVideoInfo();
         }
 
-        // Отменить
-        public override void Cancel()
-        { }
+        // Скачать
+        public override void DownLoadVideo()
+        {
+
+        }
+
+        public async Task GetVideoInfo()
+        {
+            using (var httpClient = new HttpClient())
+            {
+                //httpClient.GetStringAsync(VideoUrl).Wait();
+                YoutubeClient client = new YoutubeClient();
+                Console.ReadLine();
+                var info = await client.Videos.GetAsync("https://www.youtube.com/watch?v=1La4QzGeaaQ");
+
+                
+                Console.WriteLine($"Название: {info.Title}");
+                Console.WriteLine($"Продолжительность: {info.Duration}");
+                Console.WriteLine($"Автор: {info.Author}");
+                Console.ReadLine();
+            }
+        }
     }
 
 }

@@ -11,7 +11,7 @@ namespace YoutubeExplodeConverter
     /// </summary>
     abstract class Command
     {
-        public abstract void Run();
-        public abstract void Cancel();
+        public abstract void ConsoleViewer();
+        public abstract void DownLoadVideo();
     }
 }

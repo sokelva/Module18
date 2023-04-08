@@ -20,7 +20,7 @@
             sender.SetCommand(commandOne);
 
             //  выполнение
-            sender.Run();
+            sender.ConsoleViewer();
         }
     }
-}
+ }

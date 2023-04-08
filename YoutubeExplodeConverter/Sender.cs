@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YoutubeExplode;
 
 namespace YoutubeExplodeConverter
 {
@@ -12,22 +13,23 @@ namespace YoutubeExplodeConverter
     class Sender
     {
         Command _command;
+        
 
         public void SetCommand(Command command)
         {
             _command = command;
         }
 
-        // Выполнить
-        public void Run()
+        // Вывести в консоль
+        public void ConsoleViewer()
         {
-            _command.Run();
+            _command.ConsoleViewer();
         }
 
-        // Отменить
-        public void Cancel()
+        // Выполнить скачивание
+        public void DownLoadVideo()
         {
-            _command.Cancel();
+            _command.DownLoadVideo();
         }
     }
 }
